@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Test set
+test-skup/
+python-2.7.7-docs-html/
+.html
+
+#PyCharm
+.idea/
