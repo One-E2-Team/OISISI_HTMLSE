@@ -1,6 +1,6 @@
-## Welcome to Studentska Služba page
+## Welcome to HTMLSE page
 
-This is a site for a program developed by Radoš Milićev and Igor Šikuljak. The Studentska Služba app is a project asignment - second grading half of the curicculum for the OISISI Subject on Applied Computer Scciences at the Faculty of Technical Sciences in Novi Sad. It was realized using Python programming language.
+This is a site for a program developed by Radoš Milićev and Igor Šikuljak. The HTMLSE (HTML Search Engine) is a project asignment - second grading half of the curicculum for the OISISI Subject on Applied Computer Scciences at the Faculty of Technical Sciences in Novi Sad. It was realized using Python programming language.
 
 [Source Code](https://github.com/FmasterofU/OISISI_Python)
 
