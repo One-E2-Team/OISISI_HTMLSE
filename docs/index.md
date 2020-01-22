@@ -6,6 +6,10 @@ This is a site for a program developed by Radoš Milićev and Igor Šikuljak. Th
 
 [Specification](https://fmasterofu.github.io/OISISI_Python/specification/Specifikacija%20drugog%20projektnog%20zadatka.pdf)
 
+[TA's FAQ](https://docs.google.com/document/d/1W7RQ0_ZngwGbuN2FLzS9_ldzvYwJTDDGamtau6MarUM)
+
+[Submission Sheet](https://docs.google.com/spreadsheets/d/1M4d6yj1qO7cZhJsZoL-0lhTf27vsfOWKTGdH6D0VMOY)
+
 [Product License](LICENSE.md)
 
 
