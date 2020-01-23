@@ -2,7 +2,7 @@
 
 This is a site for a program developed by Radoš Milićev and Igor Šikuljak. The HTMLSE (HTML Search Engine) is a project asignment - second grading half of the curicculum for the OISISI Subject on Applied Computer Scciences at the Faculty of Technical Sciences in Novi Sad. It was realized using Python programming language.
 
-[Source Code](https://github.com/FmasterofU/OISISI_Python)
+[Source Code](https://github.com/FmasterofU/OISISI_Python) (Still a private repository, visible only to [**@katarinaa94**](https://github.com/katarinaa94))
 
 [Specification](https://fmasterofu.github.io/OISISI_Python/specification/Specifikacija%20drugog%20projektnog%20zadatka.pdf)
 
