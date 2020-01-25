@@ -132,6 +132,8 @@ dmypy.json
 test-skup/
 python-2.7.7-docs-html/
 .html
+*.html
+*.zip
 
 #PyCharm
 .idea/
