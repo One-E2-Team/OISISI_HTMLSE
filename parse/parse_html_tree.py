@@ -1,4 +1,6 @@
 import os
+from .parser import Parser
+import structures
 
 
 def get_html_documents_list(top):
@@ -14,3 +16,15 @@ def get_html_documents_list(top):
             if '.htm' in file:  # takes .htm as well as .html documents
                 ret.append(os.path.join(root, file))
     return ret
+
+
+class PopulateStructures:
+    def __init__(self, top):
+        self.graph = structures.Graph()
+        self.trie = structures.Trie()
+        parser = Parser()
+        for html_file in get_html_documents_list(top):
+            links, words = parser.parse(html_file)
+            # TODO populate graph and trie
+            print(links, words)
+        pass
