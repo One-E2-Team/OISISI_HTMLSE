@@ -19,12 +19,18 @@ def get_html_documents_list(top):
 
 
 class PopulateStructures:
+    """
+    Populate word trie tree and links graph from all HTML documents in a folder (complete directory tree).
+    graph and trie are attributes of this class (instances of data structures implemented in structures package)
+    """
+
     def __init__(self, top):
-        self.graph = structures.Graph()
+        self.graph = structures.Graph(directed=True)
         self.trie = structures.Trie()
         parser = Parser()
+        # document = open('data.txt', mode='w', encoding='utf-8')
         for html_file in get_html_documents_list(top):
             links, words = parser.parse(html_file)
             # TODO populate graph and trie
-            print(links, words)
+            # document.write(str(links) + ' ' + str(words) + '\n')
         pass
