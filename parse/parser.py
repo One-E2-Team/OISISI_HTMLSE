@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-import re
 import os
-
+import re
 from html.parser import HTMLParser
 
 
+# noinspection PyAttributeOutsideInit
 class Parser(HTMLParser):
     """
     Parser HTML dokumenata
@@ -13,6 +13,9 @@ class Parser(HTMLParser):
         parser = Parser()
         parser.parse(FILE_PATH)
     """
+
+    def error(self, message):
+        print("ParseError:" + message)
 
     def handle_starttag(self, tag, attrs):
         """
