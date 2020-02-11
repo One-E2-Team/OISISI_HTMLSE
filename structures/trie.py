@@ -3,6 +3,7 @@ class TrieNode:
         self.letter = letter
         self.is_end = False
         self.children = {}
+        self.parent = None
 
 class Trie:
     # TODO implement Trie
@@ -12,6 +13,7 @@ class Trie:
     def word_exists(self, word):
         if word == "":
             return True
+        word = word.lower()
         current_node = self.root
         for letter in word:
             if letter not in current_node.children:
@@ -25,25 +27,43 @@ class Trie:
 
 
     def add_node(self, word):
+        if word == "":
+            return
+        word = word.lower()
         current_node = self.root
         for letter in word:
             if letter not in current_node.children:
                 adding = TrieNode(letter)
+                adding.parent = current_node
                 current_node.children[letter] = adding
             current_node = current_node.children[letter]
         current_node.is_end = True
 
     def __str__(self):
         if self.root.children:
-            return "Trie is not empty"
+            self.print_words(self.root)
+            return ""
         else:
             return "Trie is empty"
 
-if __name__ == "__main__":
-    trie = Trie()
-    trie.add_node("slovo")
-    trie.add_node("slova")
-    trie.add_node("word")
-    trie.add_node("words")
-    trie.add_node("slo")
-    print(trie)
+    def print_words(self, root):
+        if root:
+            if root.children:
+                for letter in root.children:
+                    node = TrieNode(letter)
+                    node.parent = root
+                    if root.children[letter].is_end:
+                        temp = ""
+                        temp = temp + self.get_all_letters(node) + letter
+                        print(temp)
+                    self.print_words(root.children[letter])
+
+    def get_all_letters(self, node):
+        r = ""
+        while node.parent.letter != '*':
+            r = r + node.parent.letter
+            node = node.parent
+        ret = ""
+        for l in reversed(r):
+            ret = ret + l
+        return ret

@@ -1,5 +1,5 @@
 import os
-from .parser import Parser
+from parse.parser import Parser
 import structures
 
 
