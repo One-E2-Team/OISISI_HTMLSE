@@ -6,7 +6,6 @@ class TrieNode:
         self.parent = None
 
 class Trie:
-    # TODO implement Trie
     def __init__(self):
         self.root = TrieNode("*")
 
@@ -30,6 +29,8 @@ class Trie:
         if word == "":
             return
         word = word.lower()
+        if self.word_exists(word):
+            return
         current_node = self.root
         for letter in word:
             if letter not in current_node.children:

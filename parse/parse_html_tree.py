@@ -37,4 +37,7 @@ class PopulateStructures:
             for link in links:
                 self.graph.insert_vertex(os.path.abspath(link))
                 self.graph.insert_edge(html_file, os.path.abspath(link))
-            # TODO populate trie
+
+            for word in words:
+                self.trie.add_node(word)
+        print("Trie and graph completed")
