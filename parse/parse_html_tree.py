@@ -1,6 +1,7 @@
 import os
-from parse.parser import Parser
+
 import structures
+from parse.parser import Parser
 
 
 def get_html_documents_list(top):
@@ -14,7 +15,7 @@ def get_html_documents_list(top):
     for root, dirs, files in os.walk(top):
         for file in files:
             if '.htm' in file:  # takes .htm as well as .html documents
-                ret.append(os.path.join(root, file))
+                ret.append(os.path.abspath(os.path.join(root, file)))
     return ret
 
 
@@ -31,6 +32,9 @@ class PopulateStructures:
         # document = open('data.txt', mode='w', encoding='utf-8')
         for html_file in get_html_documents_list(top):
             links, words = parser.parse(html_file)
-            # TODO populate graph and trie
-            # document.write(str(links) + ' ' + str(words) + '\n')
-        pass
+            # document.write(str(html_file) + ' : ' + str(links) + ' ' + str(words) + '\n')
+            self.graph.insert_vertex(html_file)
+            for link in links:
+                self.graph.insert_vertex(os.path.abspath(link))
+                self.graph.insert_edge(html_file, os.path.abspath(link))
+            # TODO populate trie
