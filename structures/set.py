@@ -1,34 +1,57 @@
 class Set:
-    # TODO implement Set
     def __init__(self):
-        pass
+        self._dict = {}
 
     def add(self, e):
-        pass
+        self._dict[e] = e
+
+    def discard(self, e):
+        try:
+            del self._dict[e]
+        except KeyError:
+            return
 
     def __contains__(self, e):
-        pass
+        return e in self._dict
 
     def __len__(self):
-        pass
+        return len(self._dict)
 
     def __iter__(self):
-        pass
+        return iter(self._dict.copy())
 
     def remove(self, e):
-        pass
+        del self._dict[e]
 
     def pop(self):
-        pass
+        self._dict.popitem()
 
     def clear(self):
-        pass
+        del self._dict
+        self._dict = {}
+
+    def __get_dict(self):
+        return self._dict.copy()
 
     def __or__(self, other):  # union
-        pass
+        ret = Set()
+        for e in list(self._dict.keys()) + list(other.__get_dict().keys()):
+            ret.add(e)
+        return ret
 
     def __and__(self, other):  # cross section
-        pass
+        ret = Set()
+        for e in list(self._dict.keys()) + list(other.__get_dict().keys()):
+            if e in self._dict and e in other:
+                ret.add(e)
+        return ret
 
     def __sub__(self, other):  # difference/complement
-        pass
+        ret = Set()
+        for e in self._dict:
+            if e not in other.__get_dict():
+                ret.add(e)
+        return ret
+
+    def __str__(self):
+        return str(list(self._dict.keys()))
