@@ -1,4 +1,5 @@
 import os
+import sys
 
 import progressbar
 
@@ -38,7 +39,8 @@ class PopulateStructures:
         if len(html_files) == 0:
             print('No html files in given directory structure, exiting.')
             exit(0)
-        print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(html_files)))
+        print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(html_files)),
+              flush=True)
         for i in progressbar.progressbar(range(len(html_files))):
             html_file = html_files[i]
             links, words = parser.parse(html_file)
@@ -49,4 +51,5 @@ class PopulateStructures:
                 self.graph.insert_edge(html_file, os.path.abspath(link))
             for word in words:
                 self.trie.add_node(word, html_file)
+        sys.stdout.flush()
         print("Trie and graph populated.")
