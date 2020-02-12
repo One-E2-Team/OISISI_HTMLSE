@@ -15,6 +15,9 @@ def get_html_documents_list(top):
     """
 
     ret = []
+    if not os.path.isdir(top):
+        print('Passed input is not a valid directory path. Exiting.')
+        exit(-1)
     print('Getting directory tree and extracting all paths to HTML files...')
     for root, _, files in os.walk(top):
         for file in files:
@@ -30,7 +33,7 @@ class PopulateStructures:
     graph and trie are attributes of this class (instances of data structures implemented in structures package)
     """
 
-    def __init__(self, top):
+    def __init__(self, top, ui_ux=True):
         self.graph = structures.Graph(directed=True)
         self.trie = structures.Trie()
         parser = Parser()
@@ -41,7 +44,8 @@ class PopulateStructures:
             exit(0)
         print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(html_files)),
               flush=True)
-        for i in progressbar.progressbar(range(len(html_files))):
+        iterator_generator = progressbar.progressbar(range(len(html_files))) if ui_ux else range(len(html_files))
+        for i in iterator_generator:
             html_file = html_files[i]
             links, words = parser.parse(html_file)
             # document.write(str(html_file) + ' : ' + str(links) + ' ' + str(words) + '\n')
@@ -52,4 +56,4 @@ class PopulateStructures:
             for word in words:
                 self.trie.add_node(word, html_file)
         sys.stdout.flush()
-        print("Trie and graph populated.")
+        print("Trie and graph populated.", flush=True)

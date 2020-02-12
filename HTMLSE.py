@@ -1,11 +1,13 @@
 import parse
 import search
 
+UI_UX = True
+
 if __name__ == '__main__':
     top_dir = input("Enter path (relative or absolute) to dataset (ENTER -> test-skup): ")
     if top_dir == '':
         top_dir = 'test-skup'
-    data = parse.PopulateStructures(top_dir)  # populated data how stored in data.set and data.graph
+    data = parse.PopulateStructures(top_dir, ui_ux=UI_UX)  # populated data how stored in data.set and data.graph
     while True:
         print('\n\n---------- HTMLSE Search Section ----------\n')
         query = input('Enter one word, multiple words separated by space or /'
