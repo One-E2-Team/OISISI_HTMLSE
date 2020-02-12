@@ -22,7 +22,7 @@ class Trie:
 
         if current_node.is_end:
             #return True
-            return current_node.docs
+            return current_node.docs.keys()
         else:
             return False
 
