@@ -9,3 +9,8 @@ Set-ExecutionPolicy RemoteSigned
 ```
 
 After that, every time you need the test set rebuild just run the `get-dataset-test.ps1` poweshell script.
+
+
+## Needed external python libraries:
+
+- [Progrssbar2](https://pypi.org/project/progressbar2) version 3.47.0 `pip install progresbar2`
