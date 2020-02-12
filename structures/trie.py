@@ -4,6 +4,7 @@ class TrieNode:
         self.is_end = False
         self.children = {}
         self.parent = None
+        self.docs = {}
 
 class Trie:
     def __init__(self):
@@ -20,17 +21,18 @@ class Trie:
             current_node = current_node.children[letter]
 
         if current_node.is_end:
-            return True
+            #return True
+            return current_node.docs
         else:
             return False
 
 
-    def add_node(self, word):
+    def add_node(self, word, path):
         if word == "":
             return
         word = word.lower()
-        if self.word_exists(word):
-            return
+        #if self.word_exists(word):
+            #return
         current_node = self.root
         for letter in word:
             if letter not in current_node.children:
@@ -39,6 +41,7 @@ class Trie:
                 current_node.children[letter] = adding
             current_node = current_node.children[letter]
         current_node.is_end = True
+        current_node.docs[path] = path
 
     def __str__(self):
         if self.root.children:

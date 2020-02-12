@@ -5,3 +5,4 @@ if __name__ == '__main__':
     if top_dir == '':
         top_dir = 'test-skup'
     data = parse.PopulateStructures(top_dir)  # populated data how stored in data.set and data.graph
+    parse.enter_query(data.trie)
