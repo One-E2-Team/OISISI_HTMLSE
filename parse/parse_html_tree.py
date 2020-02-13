@@ -1,7 +1,7 @@
 import os
 import sys
 
-import progressbar
+from progressbar import progressbar
 
 import structures
 from parse.parser import Parser
@@ -38,21 +38,21 @@ class PopulateStructures:
         self.trie = structures.Trie()
         parser = Parser()
         # document = open('data.txt', mode='w', encoding='utf-8')
-        html_files = get_html_documents_list(top)
-        if len(html_files) == 0:
+        self.html_files = get_html_documents_list(top)
+        if len(self.html_files) == 0:
             print('No html files in given directory structure, exiting.')
             exit(0)
-        print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(html_files)),
+        print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(self.html_files)),
               flush=True)
-        iterator_generator = progressbar.progressbar(range(len(html_files))) if ui_ux else range(len(html_files))
+        iterator_generator = progressbar(range(len(self.html_files))) if ui_ux else range(len(self.html_files))
         for i in iterator_generator:
-            html_file = html_files[i]
+            html_file = self.html_files[i]
             links, words = parser.parse(html_file)
             # document.write(str(html_file) + ' : ' + str(links) + ' ' + str(words) + '\n')
             self.graph.insert_vertex(html_file)
             for link in links:
-                self.graph.insert_vertex(os.path.abspath(link))
-                self.graph.insert_edge(html_file, os.path.abspath(link))
+                self.graph.insert_vertex(link)
+                self.graph.insert_edge(html_file, link)
             for word in words:
                 self.trie.add_node(word, html_file)
         sys.stdout.flush()
