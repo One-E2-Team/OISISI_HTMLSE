@@ -60,6 +60,7 @@ def execute_query(query, trie):
                 ret_string += correct_words[i] + " "
         elif flag == "not":
             ret_string += correct_words[0]
+        ret_string = ret_string.strip()
         if flag == 'and' or flag == 'not':
             first = Set()
             second = Set()
