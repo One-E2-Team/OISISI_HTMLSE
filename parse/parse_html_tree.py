@@ -42,8 +42,7 @@ class PopulateStructures:
         if len(self.html_files) == 0:
             print('No html files in given directory structure, exiting.')
             exit(0)
-        print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(self.html_files)),
-              flush=True)
+        print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(self.html_files)))
         iterator_generator = progressbar(range(len(self.html_files))) if ui_ux else range(len(self.html_files))
         for i in iterator_generator:
             html_file = self.html_files[i]
@@ -55,5 +54,4 @@ class PopulateStructures:
                 self.graph.insert_edge(html_file, link)
             for word in words:
                 self.trie.add_node(word, html_file)
-        sys.stdout.flush()
-        print("Trie and graph populated.", flush=True)
+        print("Trie and graph populated.")
