@@ -54,5 +54,6 @@ def IR(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, ordere
 
 def get_ranks(pagerank, graph: Graph, hard_result_set: dict, broad_positive_res_set: dict,
               ordered_list: list, positive_query_len: int):
-    return normalize(np.multiply(pagerank, IR(graph, hard_result_set, broad_positive_res_set,
-                                              ordered_list, positive_query_len))).tolist()
+    return normalize(np.multiply(pagerank.reshape((len(ordered_list),)),
+                                 IR(graph, hard_result_set, broad_positive_res_set,
+                                    ordered_list, positive_query_len))).tolist()
