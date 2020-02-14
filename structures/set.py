@@ -55,3 +55,6 @@ class Set:
 
     def __str__(self):
         return str(list(self._dict.keys()))
+
+    def get_list(self):
+        return list(self._dict.keys())
