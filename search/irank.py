@@ -4,6 +4,8 @@ from structures import Graph
 
 
 def normalize(vec):
+    if np.count_nonzero(vec) == 0:
+        return vec
     return np.array(vec) / np.linalg.norm(vec, ord=1)
 
 
@@ -42,12 +44,12 @@ def IR2(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, order
                     appearance_files[ordered_list.index(file)] += 1
             if appearance_files[ordered_list.index(file)] == 0:
                 appearance_files[ordered_list.index(file)] = 1
-    return normalize(np.divide(appearance_count, appearance_files))
+    return 1 + np.divide(appearance_count, appearance_files)
 
 
 def IR(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list, positive_query_len: int):
-    return normalize(np.add(IR1(hard_result_set, ordered_list, positive_query_len),
-                            IR2(graph, hard_result_set, broad_positive_res_set, ordered_list, positive_query_len)))
+    return normalize(np.multiply(IR1(hard_result_set, ordered_list, positive_query_len),
+                                 IR2(graph, hard_result_set, broad_positive_res_set, ordered_list, positive_query_len)))
 
 
 def get_ranks(pagerank, graph: Graph, hard_result_set: dict, broad_positive_res_set: dict,
