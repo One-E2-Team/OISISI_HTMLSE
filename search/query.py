@@ -22,17 +22,23 @@ def execute_query(query, trie):
     flag = None
     words = []
     ret_string = ""
+    broad_search = {}
+    hard_search = {}
     if ' ' not in query:
         paths = trie.word_exists(query)
         ret_string += query
         if paths is not False:
             ret = Set()
-            for p in paths:
+            for p in paths.keys():
                 ret.add(p)
-            return ret_string, ret
+                broad_search[p] = []
+                broad_search[p].append(paths[p])
+            for i in ret.get_list():
+                hard_search[i] = broad_search[i]
+            return ret_string, hard_search, broad_search
         else:
             print("'" + query + "' doesn't exist in trie")
-            return ret_string, None
+            return ret_string, hard_search, broad_search
     elif 'and' not in query and 'or' not in query and 'not' not in query:
         flag = 'or'
         words = query.split(' ')
@@ -66,20 +72,31 @@ def execute_query(query, trie):
             second = Set()
             paths = trie.word_exists(correct_words[0])
             if paths is not False:
-                for p in paths:
+                for p in paths.keys():
                     first.add(p)
+                    broad_search[p] = []
+                    broad_search[p].append(paths[p])
+                    if flag != 'not':
+                        broad_search[p].append(0)
             paths = trie.word_exists(correct_words[1])
             if paths is not False:
-                for p in paths:
+                for p in paths.keys():
                     second.add(p)
+                    if flag != 'not' and p not in broad_search.keys():
+                        broad_search[p] = []
+                        broad_search[p].append(0)
+                        broad_search[p].append(paths[p])
+                    elif flag != 'not' and p in broad_search.keys():
+                        broad_search[p][1] = paths[p]
             #print(first)
             #print(second)
             if flag == 'and':
                 ret = first.__and__(second)
             elif flag == 'not':
                 ret = first.__sub__(second)
-            #print(ret)
-            return ret_string, ret
+            for i in ret.get_list():
+                hard_search[i] = broad_search[i]
+            return ret_string, hard_search, broad_search
         elif flag == 'or':
             sets = []
             for i in range(0, correct_words.__len__()):
@@ -89,8 +106,16 @@ def execute_query(query, trie):
                 if paths is not False:
                     for p in paths:
                         sets[i].add(p)
+                        if p not in broad_search.keys():
+                            broad_search[p] = []
+                            for j in range(0, correct_words.__len__()):
+                                broad_search[p].append(0)
+                            broad_search[p][i] = paths[p]
+                        elif p in broad_search.keys():
+                            broad_search[p][i] = paths[p]
             ret = sets[0]
             for i in range(1, correct_words.__len__()):
                 ret = ret.__or__(sets[i])
-            #print(ret)
-            return ret_string, ret
+            for i in ret.get_list():
+                hard_search[i] = broad_search[i]
+            return ret_string, hard_search, broad_search
