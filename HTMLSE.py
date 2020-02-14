@@ -34,16 +34,16 @@ if __name__ == '__main__':
         elif search.validate_query(query):
             print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
             start = time.time()
-            #hard_result_set = search.execute_query(query, data.trie)  # current
-            #positive_query, hard_result_set = search.execute_query(query, data.trie)  # next
             positive_query, hard_result_set, broad_positive_res_set = search.execute_query(query, data.trie)
             end = time.time()
             print('Done in {0} seconds.'.format(end - start))
-            print(positive_query)
-            print(hard_result_set)
-            print(broad_positive_res_set)
+            print('Performing Ranked Search...')
+            start = time.time()
+            ranks = search.get_ranks(pagerank, data.graph, hard_result_set, broad_positive_res_set,
+                                     data.html_files, len(positive_query.split(' ')))
+            end = time.time()
+            print('Done in {0} seconds.'.format(end - start))
         else:
             print('Invalid search query. Reloading.')
             continue
-        # TODO perform #ranked_search
         # TODO etc.

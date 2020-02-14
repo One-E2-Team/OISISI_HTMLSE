@@ -11,7 +11,7 @@ Set-ExecutionPolicy RemoteSigned
 After that, every time you need the test set rebuild just run the `get-dataset-test.ps1` poweshell script.
 
 
-This program has been developed and tested using Python interpreter version 3.7.
+This program has been developed and tested using Python interpreter version 3.7.5.
 
 ## Needed external python libraries:
 

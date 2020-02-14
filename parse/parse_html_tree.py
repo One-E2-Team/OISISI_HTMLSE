@@ -38,6 +38,7 @@ class PopulateStructures:
         parser = Parser()
         # document = open('data.txt', mode='w', encoding='utf-8')
         self.html_files = get_html_documents_list(top)
+        self.word_count = []
         if len(self.html_files) == 0:
             print('No html files in given directory structure, exiting.')
             exit(0)
@@ -47,6 +48,7 @@ class PopulateStructures:
             html_file = self.html_files[i]
             links, words = parser.parse(html_file)
             # document.write(str(html_file) + ' : ' + str(links) + ' ' + str(words) + '\n')
+            self.word_count.append(len(words))
             self.graph.insert_vertex(html_file)
             for link in links:
                 self.graph.insert_vertex(link)
