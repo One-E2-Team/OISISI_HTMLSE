@@ -1,5 +1,32 @@
-def paginate(result: list, N):
-    N = int(input('Enter pagination number:'))
-    # TODO
-    pass
-
+def paginate(result: list, rank_details=False):
+    print('{0} pages to show.'.format(len(result)))
+    N = int(input('Enter pagination number (0 to print everything all at once):'))
+    curr = 0
+    printed = 0
+    while curr != len(result):
+        printed += 1
+        print('{0}. {1}\tRANK: {2}'.format(curr+1, result[curr][0], result[curr][1][0]))
+        if rank_details:
+            print('\tPageRank:{0} IRank: {1} [IRank1: {2}, IRank2: {3}]'.format(result[curr][1][1],
+                                                                                result[curr][1][2],
+                                                                                result[curr][1][3],
+                                                                                result[curr][1][4],))
+        curr += 1
+        if printed == N:
+            printed = 0
+            do = input(('{0} Pages left. Use ENTER(RETURN) to display next page, \'c\' to cancel this job.\n'
+                        'Enter a number to change the number of links being displayed in one page.').format(len(result)
+                                                                                                            - curr))
+            if do == '':
+                continue
+            elif do.lower() == 'c':
+                break
+            else:
+                try:
+                    do = int(do)
+                except ValueError:
+                    print('Invalid input, canceling currently active job.')
+                    break
+                else:
+                    N = do
+    print('-------------------------------------------')

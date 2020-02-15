@@ -65,9 +65,7 @@ if __name__ == '__main__':
             results.sort(result)
             end = time.time()
             print('Done in {0} seconds.'.format(end - start))
-            for r in result:
-                print(r)
-            # results.paginate(result)
+            results.paginate(result, rank_details=True)
         else:
             print('Invalid search query. Reloading.')
             continue
