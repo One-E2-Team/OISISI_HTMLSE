@@ -9,7 +9,7 @@ def normalize(vec):
     return np.array(vec) / np.linalg.norm(vec, ord=1)
 
 
-def IR1(hard_result_set: dict, ordered_list: list, positive_query_len: int, word_count: list = None):
+def IRank1(hard_result_set: dict, ordered_list: list, positive_query_len: int, word_count: list = None):
     # word count is not used, but it could be, to utilize percentage of searched words per document
     appearance_penal_factor = np.zeros(len(ordered_list))
     appearance_dividend = np.ones(len(ordered_list))
@@ -24,8 +24,8 @@ def IR1(hard_result_set: dict, ordered_list: list, positive_query_len: int, word
     return normalize(np.multiply(appearance_penal_factor, appearance_dividend / np.max(appearance_dividend)))
 
 
-def IR2(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list, positive_query_len: int,
-        word_count: list = None):
+def IRank2(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list,
+           positive_query_len: int, word_count: list = None):
     # word count is not used, but it could be, to utilize percentage of searched words per document
     appearance_count = np.zeros(len(ordered_list))
     appearance_files = np.ones(len(ordered_list))
@@ -47,13 +47,20 @@ def IR2(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, order
     return 1 + np.divide(appearance_count, appearance_files)
 
 
-def IR(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list, positive_query_len: int):
-    return normalize(np.multiply(IR1(hard_result_set, ordered_list, positive_query_len),
-                                 IR2(graph, hard_result_set, broad_positive_res_set, ordered_list, positive_query_len)))
+def IRank(graph: Graph, hard_result_set: dict, broad_positive_res_set: dict,
+          ordered_list: list, positive_query_len: int):
+    IR1 = IRank1(hard_result_set, ordered_list, positive_query_len)
+    IR2 = IRank2(graph, hard_result_set, broad_positive_res_set, ordered_list, positive_query_len)
+    return normalize(np.multiply(IR1, IR2)), IR1, IR2
 
 
-def get_ranks(pagerank, graph: Graph, hard_result_set: dict, broad_positive_res_set: dict,
+def get_ranks(pagerank: np.ndarray, graph: Graph, hard_result_set: dict, broad_positive_res_set: dict,
               ordered_list: list, positive_query_len: int):
-    return normalize(np.multiply(pagerank.reshape((len(ordered_list),)),
-                                 IR(graph, hard_result_set, broad_positive_res_set,
-                                    ordered_list, positive_query_len))).tolist()
+    pagerank = pagerank.reshape((len(ordered_list),))
+    IR, IR1, IR2 = IRank(graph, hard_result_set, broad_positive_res_set, ordered_list, positive_query_len)
+    return np.concatenate((normalize(np.multiply(pagerank, IR)).reshape((len(ordered_list), 1)),
+                           pagerank.reshape((len(ordered_list), 1)),
+                           IR.reshape((len(ordered_list), 1)),
+                           IR1.reshape((len(ordered_list), 1)),
+                           IR2.reshape((len(ordered_list), 1))),
+                          axis=1).tolist()

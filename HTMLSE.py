@@ -2,6 +2,7 @@ import time
 
 import parse
 import search
+import results
 
 UI_UX = True
 
@@ -43,6 +44,14 @@ if __name__ == '__main__':
                                      data.html_files, len(positive_query.split(' ')))
             end = time.time()
             print('Done in {0} seconds.'.format(end - start))
+            print('Compiling result set...')
+            start = time.time()
+            result_set = results.get_search_result(ranks, data.html_files)
+            end = time.time()
+            print('Done in {0} seconds.'.format(end - start))
+            result = results.sort(result_set)
+            for r in result_set:
+                print(r)
         else:
             print('Invalid search query. Reloading.')
             continue
