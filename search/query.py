@@ -1,5 +1,6 @@
 from structures.set import Set
 
+
 def validate_query(query):
     if query == 'and' or query == 'not' or query == 'or':
         return False
@@ -91,31 +92,31 @@ def execute_query(query, trie):
             #print(first)
             #print(second)
             if flag == 'and':
-                ret = first.__and__(second)
+                ret = first & second
             elif flag == 'not':
-                ret = first.__sub__(second)
+                ret = first - second
             for i in ret.get_list():
                 hard_search[i] = broad_search[i]
             return ret_string, hard_search, broad_search
         elif flag == 'or':
             sets = []
-            for i in range(0, correct_words.__len__()):
+            for i in range(len(correct_words)):
                 sets.append(Set())
-            for i in range(0, correct_words.__len__()):
+            for i in range(len(correct_words)):
                 paths = trie.word_exists(correct_words[i])
                 if paths is not False:
                     for p in paths:
                         sets[i].add(p)
                         if p not in broad_search.keys():
                             broad_search[p] = []
-                            for j in range(0, correct_words.__len__()):
+                            for j in range(len(correct_words)):
                                 broad_search[p].append(0)
                             broad_search[p][i] = paths[p]
                         elif p in broad_search.keys():
                             broad_search[p][i] = paths[p]
             ret = sets[0]
-            for i in range(1, correct_words.__len__()):
-                ret = ret.__or__(sets[i])
+            for i in range(1, len(correct_words)):
+                ret = ret | sets[i]
             for i in ret.get_list():
                 hard_search[i] = broad_search[i]
             return ret_string, hard_search, broad_search
