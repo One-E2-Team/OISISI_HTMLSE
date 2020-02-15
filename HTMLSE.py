@@ -7,10 +7,13 @@ import results
 UI_UX = True
 
 if __name__ == '__main__':
-    top_dir = input("Enter path (relative or absolute) to dataset (ENTER -> test-skup): ")
-    if top_dir == '':
-        top_dir = 'test-skup'
-    data = parse.PopulateStructures(top_dir, ui_ux=UI_UX)  # populated data how stored in data.set and data.graph
+    while True:
+        top_dir = input("Enter path (relative or absolute) to dataset (ENTER -> test-skup): ")
+        if top_dir == '':
+            top_dir = 'test-skup'
+        data = parse.PopulateStructures(top_dir, ui_ux=UI_UX)  # populated data how stored in data.set and data.graph
+        if len(data.html_files) != 0:
+            break
     print('\nConstructing adjacent(+ constraint sum of each column equals 1) matrix for PageRank...')
     start = time.time()
     pr_matrix = search.construct_pr_adj_matrix(data.graph, data.html_files)
@@ -38,21 +41,33 @@ if __name__ == '__main__':
             positive_query, hard_result_set, broad_positive_res_set = search.execute_query(query, data.trie)
             end = time.time()
             print('Done in {0} seconds.'.format(end - start))
-            print('Performing Ranked Search...')
+            print('\nPerforming Ranked Search...')
             start = time.time()
             ranks = search.get_ranks(pagerank, data.graph, hard_result_set, broad_positive_res_set,
                                      data.html_files, len(positive_query.split(' ')))
             end = time.time()
             print('Done in {0} seconds.'.format(end - start))
-            print('Compiling result set...')
+            print('\nCompiling result set...')
             start = time.time()
-            result_set = results.get_search_result(ranks, data.html_files)
+            result = results.get_search_result(ranks, data.html_files)
             end = time.time()
             print('Done in {0} seconds.'.format(end - start))
-            result = results.sort(result_set)
-            for r in result_set:
+            if len(result) == 0:
+                print(('Your search - {0} - did not match any documents.'
+                       '\n\nSuggestions:'
+                       '\n\n\t- Make sure that all words are spelled correctly.'
+                       '\n\t- Try different keywords.'
+                       '\n\t- Try more general keywords.'
+                       '\n\nAnd yes, we are fully copy-pasting Google.').format(query))
+                continue
+            print('\nSorting results...')
+            start = time.time()
+            results.sort(result)
+            end = time.time()
+            print('Done in {0} seconds.'.format(end - start))
+            for r in result:
                 print(r)
+            # results.paginate(result)
         else:
             print('Invalid search query. Reloading.')
             continue
-        # TODO etc.
