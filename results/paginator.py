@@ -1,5 +1,5 @@
-def paginate(result: list, rank_details=False):
-    print('{0} links to show.'.format(len(result)))
+def paginate(result: list, time: float, rank_details=False):
+    print('\n{0} results ({1} seconds)\n'.format(len(result), time))
     N = input('Enter pagination number, \'c\' to cancel printing job '
               'and 0 or anything else to print everything all at once:')
     if N.lower() == 'c':
