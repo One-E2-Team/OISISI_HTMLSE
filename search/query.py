@@ -20,6 +20,7 @@ def validate_query(query):
 
 
 def execute_query(query, trie):
+    query = query.strip()
     flag = None
     words = []
     ret_string = ""
