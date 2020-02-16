@@ -2,14 +2,15 @@ from structures.set import Set
 
 
 def validate_query(query: str):
+    query = __get_correct_query(query)
     if query == 'and' or query == 'not' or query == 'or':
         return False
     elif ' ' not in query:
         return True
     else:
-        if 'and' not in query and 'or' not in query and 'not' not in query:
+        parts = query.split(' ')
+        if 'and' not in parts and 'or' not in parts and 'not' not in parts:
             return True
-        parts = __get_correct_query(query).split(' ')
         if len(parts) != 3:
             return False
         elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
@@ -41,7 +42,7 @@ def execute_query(query, trie):
         else:
             print("'" + query + "' doesn't exist in trie")
             return ret_string, hard_search, broad_search
-    elif 'and' not in query and 'or' not in query and 'not' not in query:
+    elif ' and ' not in query and ' or ' not in query and ' not ' not in query:
         flag = 'or'
         words = query.split(' ')
     else:
@@ -90,8 +91,6 @@ def execute_query(query, trie):
                         broad_search[p].append(paths[p])
                     elif flag != 'not' and p in broad_search.keys():
                         broad_search[p][1] = paths[p]
-            #print(first)
-            #print(second)
             if flag == 'and':
                 ret = first & second
             elif flag == 'not':
@@ -133,5 +132,4 @@ def __get_correct_query(input_query):
     ret = ""
     for w in correct_words:
         ret += w + " "
-    ret = ret.strip()
-    return ret
+    return ret.strip()
