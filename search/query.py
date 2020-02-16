@@ -1,7 +1,7 @@
 from structures.set import Set
 
 
-def validate_query(query):
+def validate_query(query: str):
     if query == 'and' or query == 'not' or query == 'or':
         return False
     elif ' ' not in query:
@@ -9,7 +9,7 @@ def validate_query(query):
     else:
         if 'and' not in query and 'or' not in query and 'not' not in query:
             return True
-        parts = query.split(' ')
+        parts = __get_correct_query(query).split(' ')
         if len(parts) != 3:
             return False
         elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
@@ -20,6 +20,7 @@ def validate_query(query):
 
 
 def execute_query(query, trie):
+    query = __get_correct_query(query)
     flag = None
     words = []
     ret_string = ""
@@ -122,9 +123,9 @@ def execute_query(query, trie):
             return ret_string, hard_search, broad_search
 
 
-def get_correct_query(input):
+def __get_correct_query(input_query):
     correct_words = []
-    words = input.split(' ')
+    words = input_query.split(' ')
     for w in words:
         w = w.strip()
         if w != '':
