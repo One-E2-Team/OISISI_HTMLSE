@@ -5,6 +5,7 @@ import search
 import results
 
 UI_UX = True
+DEBUG = True
 
 if __name__ == '__main__':
     while True:
@@ -29,9 +30,9 @@ if __name__ == '__main__':
         query = input('Enter one word, multiple words separated by space or '
                       'word1 OPERATOR word2(OPERATOR can be AND, OR, NOT).\nEnter \'q\' for exit.\nInput: ')
         query = query.lower()
-        if query.lower() == 'q':
+        if query == 'q':
             exit(0)
-        elif query == '':
+        elif query.strip() == '':
             print('Empty string passed, use \'q\' for exit. Reloading.')
             continue
         elif search.validate_query(query):

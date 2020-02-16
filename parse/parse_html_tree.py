@@ -42,7 +42,7 @@ class PopulateStructures:
         if self.html_files is None:
             self.html_files = []
         elif len(self.html_files) == 0:
-            print('No html files in given directory structure, reloading.')
+            print('No HTML files in given directory structure, reloading.')
         else:
             print('Populating trie and graph with data from all HTML files (total:{0})...'.format(len(self.html_files)))
             iterator_generator = progressbar(range(len(self.html_files))) if ui_ux else range(len(self.html_files))

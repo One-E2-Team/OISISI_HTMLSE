@@ -1,5 +1,5 @@
 def paginate(result: list, rank_details=False):
-    print('{0} pages to show.'.format(len(result)))
+    print('{0} links to show.'.format(len(result)))
     N = input('Enter pagination number, \'c\' to cancel printing job '
               'and 0 or anything else to print everything all at once:')
     if N.lower() == 'c':
@@ -22,7 +22,7 @@ def paginate(result: list, rank_details=False):
         curr += 1
         if printed == N:
             printed = 0
-            do = input(('{0} Pages left. Use ENTER(RETURN) to display next page, \'c\' to cancel this job.\n'
+            do = input(('{0} links left. Use ENTER(RETURN) to display next page, \'c\' to cancel this job.\n'
                         'Enter a number to change the number of links being displayed in one page '
                         '(0 to print the rest).').format(len(result) - curr))
             if do == '':
