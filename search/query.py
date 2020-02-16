@@ -20,7 +20,6 @@ def validate_query(query):
 
 
 def execute_query(query, trie):
-    query = query.strip()
     flag = None
     words = []
     ret_string = ""
@@ -121,3 +120,17 @@ def execute_query(query, trie):
             for i in ret.get_list():
                 hard_search[i] = broad_search[i]
             return ret_string, hard_search, broad_search
+
+
+def get_correct_query(input):
+    correct_words = []
+    words = input.split(' ')
+    for w in words:
+        w = w.strip()
+        if w != '':
+            correct_words.append(w)
+    ret = ""
+    for w in correct_words:
+        ret += w + " "
+    ret = ret.strip()
+    return ret

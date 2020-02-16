@@ -31,7 +31,9 @@ if __name__ == '__main__':
         query = query.lower()
         if query.lower() == 'q':
             exit(0)
-        elif query == '':
+        else:
+            query = search.get_correct_query(query)
+        if query == '':
             print('Empty string passed, use \'q\' for exit. Reloading.')
             continue
         elif search.validate_query(query):
