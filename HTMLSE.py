@@ -26,9 +26,8 @@ if __name__ == '__main__':
     print('Done in {0} seconds.'.format(end - start))
     while True:
         print('\n\n---------- HTMLSE Search Section ----------\n')
-        query = input('Enter one word, multiple words separated by space or /'
+        query = input('Enter one word, multiple words separated by space or '
                       'word1 OPERATOR word2(OPERATOR can be AND, OR, NOT).\nEnter \'q\' for exit.\nInput: ')
-        query = query.strip()
         query = query.lower()
         if query.lower() == 'q':
             exit(0)

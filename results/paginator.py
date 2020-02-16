@@ -1,6 +1,14 @@
 def paginate(result: list, rank_details=False):
     print('{0} pages to show.'.format(len(result)))
-    N = int(input('Enter pagination number (0 to print everything all at once):'))
+    N = input('Enter pagination number, \'c\' to cancel printing job '
+              'and 0 or anything else to print everything all at once:')
+    if N.lower() == 'c':
+        return
+    else:
+        try:
+            N = int(N)
+        except ValueError:
+            N = 0
     curr = 0
     printed = 0
     while curr != len(result):
@@ -15,8 +23,8 @@ def paginate(result: list, rank_details=False):
         if printed == N:
             printed = 0
             do = input(('{0} Pages left. Use ENTER(RETURN) to display next page, \'c\' to cancel this job.\n'
-                        'Enter a number to change the number of links being displayed in one page.').format(len(result)
-                                                                                                            - curr))
+                        'Enter a number to change the number of links being displayed in one page '
+                        '(0 to print the rest).').format(len(result) - curr))
             if do == '':
                 continue
             elif do.lower() == 'c':

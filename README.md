@@ -3,7 +3,7 @@ Drugi projekat iz predmeta OISISI (Osnovi informacionih sistema i softverskog in
 
 [HTMLSE website](https://fmasterofu.github.io/OISISI_Python/)
 
-In order to set up Test Dataset, Run as Administrator following PowerShell command (only on Windows, in Linux default execution policy in powershel is Unrestricted)
+In order to set up Test Dataset, Run as Administrator following PowerShell command (only on Windows, in Linux default execution policy in powershel is Unrestricted, however, given script won't work under Linux ¯\\_(ツ)_/¯)
 ```powershell
 Set-ExecutionPolicy RemoteSigned
 ```
