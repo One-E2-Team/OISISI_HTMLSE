@@ -72,15 +72,18 @@ if __name__ == '__main__':
         advanced_search_mode = False
     while True:
         print('\n\n---------- HTMLSE Search Section ----------\n')
-        query = input('Enter one word, multiple words separated by space or '
-                      'word1 OPERATOR word2(OPERATOR can be AND, OR, NOT).\nEnter \'q\' for exit.\nInput: ')
+        if not advanced_search_mode:
+            query = input('Enter one word, multiple words separated by space or '
+                          'word1 OPERATOR word2 (OPERATOR can be AND, OR, NOT).\nEnter \'q\' for exit.\nInput: ')
+        else:
+            query = input('Enter advanced query. (&& is AND, || is OR, ! is NOT). You are able to use parentheses in expressions.\nEnter \'q\' for exit.\nInput: ')
         query = query.lower()
         if query == 'q':
             exit(0)
         elif query.strip() == '':
             print('Empty string passed, use \'q\' for exit. Reloading.')
             continue
-        elif not advanced_search_mode and search.validate_query(query, advanced_search_mode):
+        elif not advanced_search_mode and search.validate_query(query):
             if DEBUG:
                 print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
             start_sq = time.time()
@@ -89,18 +92,21 @@ if __name__ == '__main__':
             if DEBUG:
                 print('Done in {0} seconds.'.format(end_sq - start_sq))
             rank_and_display()
-        elif advanced_search_mode and search.validate_query(query, advanced_search_mode):  # and parser should have a static method for validation of the advanced search query
-            continue # will be deleted
-            if DEBUG:
-                print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
-            start_sq = time.time()
-            # TODO
-            # parsed_query = instance of an object representing query, query is represented with a tree
-            positive_query, hard_result_set, broad_positive_res_set = search.advanced.evaluate(parsed_query, data.trie)
-            continue  # delete this when above implemented
-            end_sq = time.time()
-            if DEBUG:
-                print('Done in {0} seconds.'.format(end_sq - start_sq))
-            rank_and_display()
+        elif advanced_search_mode:  # and parser should have a static method for validation of the advanced search query
+            result_query = search.advanced.parse(query)
+            if result_query is not None:
+                if DEBUG:
+                    print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
+                start_sq = time.time()
+                # TODO
+                # parsed_query = instance of an object representing query, query is represented with a tree
+                #positive_query, hard_result_set, broad_positive_res_set = search.advanced.evaluate(parsed_query, data.trie)
+                continue  # delete this when above implemented
+                end_sq = time.time()
+                if DEBUG:
+                    print('Done in {0} seconds.'.format(end_sq - start_sq))
+                rank_and_display()
+            else:
+                print('Invalid search query. Reloading.')
         else:
             print('Invalid search query. Reloading.')

@@ -1,6 +1,10 @@
-from parglare import Parser, Grammar
-if __name__ == '__main__':
+import search
 
+from parglare import Parser, Grammar
+
+
+def parse(input_query: str):
+    input_query = search.get_correct_query(input_query)
     grammar = r"""
     E: E '||' E  {left, 1}
      | E E {left, 1}
@@ -12,9 +16,8 @@ if __name__ == '__main__':
      | '(' E ')';
     
     terminals
-    string: /\w+/;
+    string: /[^&!|()]+/;
     """
-
     actions = {
         "E": [lambda _, n: n[0] + '||' + n[2],
               lambda _, n: n[0] + '||' + n[1],
@@ -26,10 +29,12 @@ if __name__ == '__main__':
                lambda _, n: '(' + n[1] + ')'],
         "string": lambda _, value: str(value).lower(),
     }
-
     g = Grammar.from_string(grammar)
-    parser = Parser(g, debug=False, actions=actions)
-
-    result = parser.parse("dont||LOOK|| this")
-
-    print("Result = ", result)
+    parser = Parser(g, actions=actions)
+    try:
+        result = parser.parse(input_query)
+    except:
+        return None
+    else:
+        print("Result = ", result)
+        return result

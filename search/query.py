@@ -1,42 +1,27 @@
 from structures.set import Set
 
 
-def validate_query(query: str, advanced=False):
-    query = __get_correct_query(query)
-    if not advanced:
-        if query == 'and' or query == 'not' or query == 'or':
-            return False
-        elif ' ' not in query:
-            return True
-        else:
-            parts = query.split(' ')
-            if 'and' not in parts and 'or' not in parts and 'not' not in parts:
-                return True
-            if len(parts) != 3:
-                return False
-            elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
-                return False
-            elif parts[1] != 'and' and parts[1] != 'not' and parts[1] != 'or':
-                return False
-            return True
+def validate_query(query: str):
+    query = get_correct_query(query)
+    if query == 'and' or query == 'not' or query == 'or':
+        return False
+    elif ' ' not in query:
+        return True
     else:
-        if query == '!' or query == '&&' or query == '||' or query == '()':
+        parts = query.split(' ')
+        if 'and' not in parts and 'or' not in parts and 'not' not in parts:
+            return True
+        if len(parts) != 3:
             return False
-        elif query.count("(") != query.count(")"):
+        elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
             return False
-        elif len(query) > 1 and (query[0] == '&' or query[0] == '|' or query[len(query)-1] == '&' or query[len(query)-1] == '|' or query[len(query)-1] == '!'):
-            return False
-        elif '!!' in query or '! !'in query or '&&&' in query or '& &&' in query or '&& &' in query or '& & &' in query or \
-            '|||' in query or '| ||' in query or '|| |' in query or '| | |' in query or '!&' in query or '! &' in query or \
-            '!|' in query or '! |' in query or '()' in query or '( )' in query or '(&' in query or '( &' in query or \
-            '(|' in query or '( |' in query or '&)' in query or '& )' in query or '|)' in query or '| )' in query or \
-            '&|' in query or '& |' in query or '|&' in query or '| &' in query or '!)' in query or '! )' in query:
+        elif parts[1] != 'and' and parts[1] != 'not' and parts[1] != 'or':
             return False
         return True
 
 
 def execute_query(query, trie):
-    query = __get_correct_query(query)
+    query = get_correct_query(query)
     flag = None
     words = []
     ret_string = ""
@@ -137,7 +122,7 @@ def execute_query(query, trie):
             return ret_string, hard_search, broad_search
 
 
-def __get_correct_query(input_query):
+def get_correct_query(input_query):
     correct_words = []
     words = input_query.split(' ')
     for w in words:
