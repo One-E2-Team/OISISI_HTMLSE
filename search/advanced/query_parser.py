@@ -16,14 +16,14 @@ if __name__ == '__main__':
     """
 
     actions = {
-        "E": [lambda _, n: n[0] + "||" + n[2],
-              lambda _, n: n[0] + "||" + n[1],
-              lambda _, n: n[0] + " && " + n[2],
+        "E": [lambda _, n: n[0] + '||' + n[2],
+              lambda _, n: n[0] + '||' + n[1],
+              lambda _, n: n[0] + '&&' + n[2],
               lambda _, n: '!' + n[1],
               lambda _, n: '(' + n[1] + ')',
               lambda _, n: n[0]],
         "EE": [lambda _, n: n[0],
-               lambda _, n: "(" + n[1] + ")"],
+               lambda _, n: '(' + n[1] + ')'],
         "string": lambda _, value: str(value).lower(),
     }
 

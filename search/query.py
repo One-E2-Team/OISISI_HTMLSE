@@ -1,21 +1,36 @@
 from structures.set import Set
 
 
-def validate_query(query: str):
+def validate_query(query: str, advanced=False):
     query = __get_correct_query(query)
-    if query == 'and' or query == 'not' or query == 'or':
-        return False
-    elif ' ' not in query:
-        return True
-    else:
-        parts = query.split(' ')
-        if 'and' not in parts and 'or' not in parts and 'not' not in parts:
+    if not advanced:
+        if query == 'and' or query == 'not' or query == 'or':
+            return False
+        elif ' ' not in query:
             return True
-        if len(parts) != 3:
+        else:
+            parts = query.split(' ')
+            if 'and' not in parts and 'or' not in parts and 'not' not in parts:
+                return True
+            if len(parts) != 3:
+                return False
+            elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
+                return False
+            elif parts[1] != 'and' and parts[1] != 'not' and parts[1] != 'or':
+                return False
+            return True
+    else:
+        if query == '!' or query == '&&' or query == '||' or query == '()':
             return False
-        elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
+        elif query.count("(") != query.count(")"):
             return False
-        elif parts[1] != 'and' and parts[1] != 'not' and parts[1] != 'or':
+        elif len(query) > 1 and (query[0] == '&' or query[0] == '|' or query[len(query)-1] == '&' or query[len(query)-1] == '|' or query[len(query)-1] == '!'):
+            return False
+        elif '!!' in query or '! !'in query or '&&&' in query or '& &&' in query or '&& &' in query or '& & &' in query or \
+            '|||' in query or '| ||' in query or '|| |' in query or '| | |' in query or '!&' in query or '! &' in query or \
+            '!|' in query or '! |' in query or '()' in query or '( )' in query or '(&' in query or '( &' in query or \
+            '(|' in query or '( |' in query or '&)' in query or '& )' in query or '|)' in query or '| )' in query or \
+            '&|' in query or '& |' in query or '|&' in query or '| &' in query or '!)' in query or '! )' in query:
             return False
         return True
 

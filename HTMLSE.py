@@ -80,7 +80,7 @@ if __name__ == '__main__':
         elif query.strip() == '':
             print('Empty string passed, use \'q\' for exit. Reloading.')
             continue
-        elif not advanced_search_mode and search.validate_query(query):
+        elif not advanced_search_mode and search.validate_query(query, advanced_search_mode):
             if DEBUG:
                 print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
             start_sq = time.time()
@@ -89,7 +89,8 @@ if __name__ == '__main__':
             if DEBUG:
                 print('Done in {0} seconds.'.format(end_sq - start_sq))
             rank_and_display()
-        elif advanced_search_mode:  # and parser should have a static method for validation of the advanced search query
+        elif advanced_search_mode and search.validate_query(query, advanced_search_mode):  # and parser should have a static method for validation of the advanced search query
+            continue # will be deleted
             if DEBUG:
                 print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
             start_sq = time.time()
