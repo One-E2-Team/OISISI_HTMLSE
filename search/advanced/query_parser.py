@@ -25,7 +25,7 @@ def parse(input_query: str):
      | '(' E ')';
     
     terminals
-    string: /[^&!|()]+/;
+    string: /[^&!|() ]+/;
     """
     actions = {
         "E": [lambda _, n: Node('||', [n[0], n[2]]),

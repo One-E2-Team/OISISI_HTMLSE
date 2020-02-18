@@ -92,16 +92,19 @@ if __name__ == '__main__':
             if DEBUG:
                 print('Done in {0} seconds.'.format(end_sq - start_sq))
             rank_and_display()
-        elif advanced_search_mode:  # and parser should have a static method for validation of the advanced search query
-            result_query = search.advanced.parse(query)
-            if result_query is not None:
+        elif advanced_search_mode:
+            if DEBUG:
+                print('\nParsing advanced mode query...')
+            start_p = time.time()
+            parsed_query = search.advanced.parse(query)
+            end_p = time.time()
+            if DEBUG:
+                print('Done in {0} seconds.'.format(end_p - start_p))
+            if parsed_query is not None:
                 if DEBUG:
                     print('\nExecuting search by query (hard_result_set, broad_positive_res_set)...')
                 start_sq = time.time()
-                # TODO
-                # parsed_query = instance of an object representing query, query is represented with a tree
-                #positive_query, hard_result_set, broad_positive_res_set = search.advanced.evaluate(parsed_query, data.trie)
-                continue  # delete this when above implemented
+                positive_query, hard_result_set, broad_positive_res_set = search.advanced.eval_query(parsed_query, data)
                 end_sq = time.time()
                 if DEBUG:
                     print('Done in {0} seconds.'.format(end_sq - start_sq))
