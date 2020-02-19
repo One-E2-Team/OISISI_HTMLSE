@@ -25,7 +25,7 @@ def rank_and_display():
     if DEBUG:
         print('Done in {0} seconds.'.format(end_crs - start_crs))
     if len(result) == 0:
-        print(('Your search - {0} - did not match any documents.'
+        print(('\nYour search - {0} - did not match any documents.'
                '\n\nSuggestions:'
                '\n\n\t- Make sure that all words are spelled correctly.'
                '\n\t- Try different keywords.'
@@ -48,7 +48,7 @@ if __name__ == '__main__':
         top_dir = input("Enter path (relative or absolute) to dataset (ENTER -> test-skup): ")
         if top_dir == '':
             top_dir = 'test-skup'
-        data = parse.PopulateStructures(top_dir, ui_ux=UI_UX)  # populated data how stored in data.set and data.graph
+        data = parse.PopulateStructures(top_dir, ui_ux=UI_UX)
         if len(data.html_files) != 0:
             break
     if DEBUG:
@@ -76,7 +76,8 @@ if __name__ == '__main__':
             query = input('Enter one word, multiple words separated by space or '
                           'word1 OPERATOR word2 (OPERATOR can be AND, OR, NOT).\nEnter \'q\' for exit.\nInput: ')
         else:
-            query = input('Enter advanced query. (&& is AND, || is OR, ! is NOT). You are able to use parentheses in expressions.\nEnter \'q\' for exit.\nInput: ')
+            query = input('Enter advanced query (&& is AND, || is OR, ! is NOT). You may use parentheses in '
+                          'expressions.\nEnter \'q\' for exit.\nInput: ')
         query = query.lower()
         if query == 'q':
             exit(0)

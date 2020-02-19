@@ -13,7 +13,8 @@ def validate_query(query: str):
             return True
         if len(parts) != 3:
             return False
-        elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or parts[2] == 'or':
+        elif parts[0] == 'and' or parts[0] == 'not' or parts[0] == 'or' or parts[2] == 'and' or parts[2] == 'not' or \
+                parts[2] == 'or':
             return False
         elif parts[1] != 'and' and parts[1] != 'not' and parts[1] != 'or':
             return False
