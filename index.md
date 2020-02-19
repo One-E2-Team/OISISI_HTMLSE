@@ -8,7 +8,7 @@ This is a site for a program developed by Radoš Milićev and Igor Šikuljak. Th
 
 [Project Readme](RM-copy.md)
 
-[Specification](/specification/Specifikacija%20drugog%20projektnog%20zadatka%20-%20V2.0.pdf)
+[Specification](specification/Specifikacija%20drugog%20projektnog%20zadatka%20-%20V2.0.pdf)
 
 [Download test dataset](dataset/test-skup.zip) (.zip file, extract to folder wit the same name at top of the source)
 
