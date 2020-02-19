@@ -14,7 +14,7 @@ def rank_and_display():
         print('\nPerforming Ranked Search...')
     start_rs = time.time()
     ranks = search.get_ranks(pagerank, data.graph, hard_result_set, broad_positive_res_set,
-                             data.html_files, len(positive_query.split(' ')))
+                             data.html_files, 0 if positive_query == '' else len(positive_query.split(' ')))
     end_rs = time.time()
     if DEBUG:
         print('Done in {0} seconds.'.format(end_rs - start_rs))
