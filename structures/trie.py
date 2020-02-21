@@ -13,11 +13,12 @@ class Trie:
 
     def word_exists(self, word):
         """
+        O(n)
         Method checks if word exists in trie
 
         :param word: the word whose existence method checks
         :return: False if word isn't in trie or dict with file paths as keys and
-        numbers of appearances for those word on specific path
+        numbers of appearances for that word on specific path
         """
         if word == "":
             return {}
@@ -35,6 +36,7 @@ class Trie:
 
     def add_node(self, word, path):
         """
+        O(n)
         Method adds word in trie and properly increments counter for number of appearances
 
         :param word: adding word
