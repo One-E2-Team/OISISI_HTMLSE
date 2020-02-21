@@ -12,6 +12,13 @@ class Trie:
         self.root = Trie.TrieNode("*")
 
     def word_exists(self, word):
+        """
+        Method checks if word exists in trie
+
+        :param word: the word whose existence method checks
+        :return: False if word isn't in trie or dict with file paths as keys and
+        numbers of appearances for those word on specific path
+        """
         if word == "":
             return {}
         word = word.lower()
@@ -27,6 +34,12 @@ class Trie:
             return False
 
     def add_node(self, word, path):
+        """
+        Method adds word in trie and properly increments counter for number of appearances
+
+        :param word: adding word
+        :param path: current file path
+        """
         if word == "":
             return
         word = word.lower()
@@ -59,6 +72,11 @@ class Trie:
             return "Trie is empty"
 
     def print_words(self, root):
+        """
+        Recursive method for printing all words from trie, starting from root
+
+        :param root: trie root
+        """
         if root:
             if root.children:
                 for letter in root.children:
@@ -72,6 +90,10 @@ class Trie:
 
     @classmethod
     def __get_all_letters(cls, node: TrieNode):
+        """
+        :param node: current trie node
+        :return: string with all letters(node values) before current node
+        """
         ret = ''
         while node.parent.letter != '*':
             ret = ret + node.parent.letter

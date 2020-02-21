@@ -13,6 +13,12 @@ class Node:
 
 
 def parse(input_query: str):
+    """
+    Method uses parglare to define grammar and creates parse_tree
+
+    :param input_query: advanced input query
+    :return: None if query isn't valid with grammar or populated parse_tree
+    """
     input_query = search.get_correct_query(input_query)
     grammar = r"""
     E: E '||' E  {left, 1}
@@ -45,5 +51,4 @@ def parse(input_query: str):
     except:
         return None
     else:
-        print("Result = ", result)
         return result

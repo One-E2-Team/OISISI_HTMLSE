@@ -2,6 +2,12 @@ from structures.set import Set
 
 
 def validate_query(query: str):
+    """
+    Checking validation for normal(not advanced) search
+
+    :param query: input query for normal(not advanced) search
+    :return: True if query is valid
+    """
     query = get_correct_query(query)
     if query == 'and' or query == 'not' or query == 'or':
         return False
@@ -22,6 +28,17 @@ def validate_query(query: str):
 
 
 def execute_query(query, trie):
+    """
+    Method executes normal search query and returns proper data structures
+
+    :param query: input string
+    :param trie: populated trie
+    :return: positive_query: string with searched words(excluding words after NOT operator)
+             hard_result_set: dict with file paths that satisfies constraints in query as keys and numbers of
+    appearances for every searched word on those paths
+             broad_positive_res_set: dict with file paths as keys and numbers of appearances for every searched word
+    on those paths
+    """
     query = get_correct_query(query)
     flag = None
     words = []
@@ -123,7 +140,13 @@ def execute_query(query, trie):
             return ret_string, hard_search, broad_search
 
 
-def get_correct_query(input_query):
+def get_correct_query(input_query: str):
+    """
+    Ignoring multiple whitespaces in input string
+
+    :param input_query: string
+    :return: same query with 1 whitespace between words
+    """
     correct_words = []
     words = input_query.split(' ')
     for w in words:
