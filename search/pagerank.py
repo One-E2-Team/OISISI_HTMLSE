@@ -41,6 +41,18 @@ def pagerank(M, num_iterations: int = 100, d: float = 0.85):
 
 
 def construct_pr_adj_matrix(graph: Graph, ordered_list: list):
+    """
+    Calculates Adjacency matrix needed for PageRank
+
+    M[i,j] ->
+                0 (if j and i are not connected)
+                1 / number of outgoing links from j (if link from j to i exists)
+    Sum of each column is 1.
+
+    :param graph: graph from a PopulateStructures object
+    :param ordered_list: ordered HTML files list (PopulateStructures object)
+    :return: pagerank adjacent matrix
+    """
     ret = np.zeros((len(ordered_list), len(ordered_list)))
     for i in range(len(ordered_list)):
         for j in range(len(ordered_list)):
