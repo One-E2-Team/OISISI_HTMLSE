@@ -1,6 +1,6 @@
 from parse.parse_html_tree import PopulateStructures
 from structures import Trie, Set
-from .query_parser import Node
+from search.advanced.query_parser import Node
 
 
 def evaluate(parsed_query_tree: Node, data: PopulateStructures):
