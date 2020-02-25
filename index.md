@@ -4,6 +4,8 @@ This is a site for a program developed by Radoš Milićev and Igor Šikuljak. Th
 
 [Source Code](https://github.com/FmasterofU/OISISI_HTMLSE) (Still a private repository, visible only to [**@katarinaa94**](https://github.com/katarinaa94))
 
+[Documentation](documentation.md)
+
 [External python library requirements](requirements.md)
 
 [Project Readme](RM-copy.md)
@@ -14,7 +16,7 @@ This is a site for a program developed by Radoš Milićev and Igor Šikuljak. Th
 
 [Browse test dataset (index.html)](dataset/test-skup/python-2.7.7-docs-html/index.html)
 
-[TA's FAQ](https://docs.google.com/document/d/1W7RQ0_ZngwGbuN2FLzS9_ldzvYwJTDDGamtau6MarUM)
+[TA's FAQ - final copy](https://docs.google.com/document/d/1YU7bYOHBFfZNAN9HrHfdno4p-MUArKH1AMk9tNqWw6M)
 
 [Submission Sheet](https://docs.google.com/spreadsheets/d/1M4d6yj1qO7cZhJsZoL-0lhTf27vsfOWKTGdH6D0VMOY)
 

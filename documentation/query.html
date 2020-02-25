@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module query</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>query</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cgige%5Cpycharmprojects%5Coisisi_python%5Csearch%5Cquery.py">c:\users\gige\pycharmprojects\oisisi_python\search\query.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-execute_query"><strong>execute_query</strong></a>(query, trie)</dt><dd><tt>Method&nbsp;executes&nbsp;normal&nbsp;search&nbsp;query&nbsp;and&nbsp;returns&nbsp;proper&nbsp;data&nbsp;structures<br>
+&nbsp;<br>
+:param&nbsp;query:&nbsp;input&nbsp;string<br>
+:param&nbsp;trie:&nbsp;populated&nbsp;trie<br>
+:return:&nbsp;positive_query:&nbsp;string&nbsp;with&nbsp;searched&nbsp;words(excluding&nbsp;words&nbsp;after&nbsp;NOT&nbsp;operator)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hard_result_set:&nbsp;dict&nbsp;with&nbsp;file&nbsp;paths&nbsp;that&nbsp;satisfies&nbsp;constraints&nbsp;in&nbsp;query&nbsp;as&nbsp;keys&nbsp;and&nbsp;numbers&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appearances&nbsp;for&nbsp;every&nbsp;searched&nbsp;word&nbsp;in&nbsp;positive_query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;broad_positive_res_set:&nbsp;dict&nbsp;with&nbsp;file&nbsp;paths&nbsp;as&nbsp;keys&nbsp;and&nbsp;numbers&nbsp;of&nbsp;appearances&nbsp;for&nbsp;every&nbsp;searched&nbsp;word<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;present&nbsp;in&nbsp;positive_query&nbsp;(sites&nbsp;present&nbsp;in&nbsp;hard_result_set&nbsp;are&nbsp;not&nbsp;included)</tt></dd></dl>
+ <dl><dt><a name="-get_correct_query"><strong>get_correct_query</strong></a>(input_query: str)</dt><dd><tt>Ignoring&nbsp;multiple&nbsp;whitespaces&nbsp;in&nbsp;input&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;input_query:&nbsp;string<br>
+:return:&nbsp;same&nbsp;query&nbsp;with&nbsp;1&nbsp;whitespace&nbsp;between&nbsp;words</tt></dd></dl>
+ <dl><dt><a name="-validate_query"><strong>validate_query</strong></a>(query: str)</dt><dd><tt>Checking&nbsp;validation&nbsp;for&nbsp;normal(not&nbsp;advanced)&nbsp;search<br>
+&nbsp;<br>
+:param&nbsp;query:&nbsp;input&nbsp;query&nbsp;for&nbsp;normal(not&nbsp;advanced)&nbsp;search<br>
+:return:&nbsp;True&nbsp;if&nbsp;query&nbsp;is&nbsp;valid</tt></dd></dl>
+</td></tr></table>
+</body></html>

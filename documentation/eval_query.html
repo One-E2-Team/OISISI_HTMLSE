@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module eval_query</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>eval_query</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cgige%5Cpycharmprojects%5Coisisi_python%5Csearch%5Cadvanced%5Ceval_query.py">c:\users\gige\pycharmprojects\oisisi_python\search\advanced\eval_query.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-eval_query"><strong>eval_query</strong></a>(parsed_query_tree: search.advanced.query_parser.Node, data: parse.parse_html_tree.PopulateStructures)</dt><dd><tt>Method&nbsp;executes&nbsp;advanced&nbsp;search&nbsp;query&nbsp;and&nbsp;returns&nbsp;proper&nbsp;data&nbsp;structures<br>
+&nbsp;<br>
+:param&nbsp;parsed_query_tree:&nbsp;advanced&nbsp;search&nbsp;query&nbsp;tree&nbsp;(defined&nbsp;in&nbsp;query_parser.py&nbsp;module)<br>
+:param&nbsp;data:&nbsp;PopulateStructures&nbsp;instance<br>
+:return:&nbsp;positive_query:&nbsp;string&nbsp;with&nbsp;searched&nbsp;words(excluding&nbsp;words&nbsp;after&nbsp;NOT&nbsp;operator)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hard_result_set:&nbsp;dict&nbsp;with&nbsp;file&nbsp;paths&nbsp;that&nbsp;satisfies&nbsp;constraints&nbsp;in&nbsp;query&nbsp;as&nbsp;keys&nbsp;and&nbsp;numbers&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appearances&nbsp;for&nbsp;every&nbsp;searched&nbsp;word&nbsp;in&nbsp;positive_query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;broad_positive_res_set:&nbsp;dict&nbsp;with&nbsp;file&nbsp;paths&nbsp;as&nbsp;keys&nbsp;and&nbsp;numbers&nbsp;of&nbsp;appearances&nbsp;for&nbsp;every&nbsp;searched&nbsp;word<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;present&nbsp;in&nbsp;positive_query&nbsp;(sites&nbsp;present&nbsp;in&nbsp;hard_result_set&nbsp;are&nbsp;not&nbsp;included)</tt></dd></dl>
+ <dl><dt><a name="-evaluate"><strong>evaluate</strong></a>(parsed_query_tree: search.advanced.query_parser.Node, data: parse.parse_html_tree.PopulateStructures)</dt><dd><tt>Method&nbsp;performs&nbsp;Postorder&nbsp;DFS&nbsp;on&nbsp;parsed_query_tree&nbsp;and&nbsp;constructs&nbsp;a&nbsp;Set&nbsp;for&nbsp;given&nbsp;advanced&nbsp;search.<br>
+:param&nbsp;parsed_query_tree:&nbsp;advanced&nbsp;search&nbsp;query&nbsp;tree<br>
+:param&nbsp;data:&nbsp;PopulateStructures&nbsp;instance<br>
+:return:&nbsp;resulting&nbsp;Set</tt></dd></dl>
+ <dl><dt><a name="-get_positive_list"><strong>get_positive_list</strong></a>(parsed_query_tree: search.advanced.query_parser.Node, lst: list)</dt><dd><tt>FUNCTION&nbsp;IS&nbsp;MUTABLE.<br>
+:param&nbsp;parsed_query_tree:&nbsp;advanced&nbsp;search&nbsp;query&nbsp;tree<br>
+:param&nbsp;lst:&nbsp;destination&nbsp;list<br>
+:return:&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-get_set"><strong>get_set</strong></a>(word: str, trie: structures.trie.Trie)</dt><dd><tt>Performs&nbsp;search&nbsp;on&nbsp;one&nbsp;word&nbsp;query<br>
+:param&nbsp;word:&nbsp;string&nbsp;containing&nbsp;word&nbsp;to&nbsp;be&nbsp;searched<br>
+:param&nbsp;trie:&nbsp;PopulateStructures&nbsp;instance&nbsp;attribute&nbsp;containing&nbsp;Trie<br>
+:return:&nbsp;resulting&nbsp;Set</tt></dd></dl>
+ <dl><dt><a name="-get_world_set"><strong>get_world_set</strong></a>(html_files: list)</dt><dd><tt>:param&nbsp;html_files:&nbsp;list&nbsp;of&nbsp;all&nbsp;sites&nbsp;(usually&nbsp;PopulateStructures&nbsp;instance,&nbsp;attribute&nbsp;html_files)<br>
+:return:&nbsp;Set&nbsp;(structures.set&nbsp;module)&nbsp;structure&nbsp;of&nbsp;all&nbsp;sites</tt></dd></dl>
+</td></tr></table>
+</body></html>

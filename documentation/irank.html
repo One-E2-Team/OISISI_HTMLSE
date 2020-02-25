@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module irank</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>irank</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cgige%5Cpycharmprojects%5Coisisi_python%5Csearch%5Cirank.py">c:\users\gige\pycharmprojects\oisisi_python\search\irank.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-IRank"><strong>IRank</strong></a>(graph: structures.graph.Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list, positive_query_len: int)</dt><dd><tt>IR&nbsp;is&nbsp;normalized.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IR&nbsp;=&nbsp;IR1&nbsp;*&nbsp;IR2<br>
+&nbsp;<br>
+For&nbsp;further&nbsp;details&nbsp;on&nbsp;algorithm&nbsp;see&nbsp;IRank1&nbsp;and&nbsp;IRank2&nbsp;functions&nbsp;in&nbsp;this&nbsp;module.</tt></dd></dl>
+ <dl><dt><a name="-IRank1"><strong>IRank1</strong></a>(hard_result_set: dict, ordered_list: list, positive_query_len: int, word_count: list = None)</dt><dd><tt>IR1&nbsp;is&nbsp;normalized.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IR1&nbsp;=&nbsp;appearance&nbsp;penal&nbsp;factor&nbsp;*&nbsp;appearance&nbsp;dividend<br>
+&nbsp;<br>
+Appearance&nbsp;penal&nbsp;factor&nbsp;-&nbsp;takes&nbsp;values&nbsp;from&nbsp;0&nbsp;to&nbsp;1,&nbsp;all&nbsp;sites&nbsp;not&nbsp;matching&nbsp;The&nbsp;Query&nbsp;given&nbsp;by&nbsp;our&nbsp;God&nbsp;Saviour&nbsp;-&nbsp;User<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;0,&nbsp;this&nbsp;will&nbsp;also&nbsp;further&nbsp;propagate&nbsp;to&nbsp;RANK&nbsp;and&nbsp;assure&nbsp;that&nbsp;only&nbsp;sites&nbsp;matching<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given&nbsp;criteria&nbsp;appears&nbsp;in&nbsp;results.&nbsp;Otherwise,&nbsp;this&nbsp;holds&nbsp;a&nbsp;number&nbsp;following&nbsp;formula:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;words&nbsp;from&nbsp;positive&nbsp;query&nbsp;appearing&nbsp;on&nbsp;site&nbsp;/&nbsp;num&nbsp;of&nbsp;words&nbsp;in&nbsp;pos.&nbsp;query<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;therefore,&nbsp;max&nbsp;value&nbsp;is&nbsp;1&nbsp;(all&nbsp;words&nbsp;are&nbsp;present)<br>
+Appearance&nbsp;dividend&nbsp;-&nbsp;holds&nbsp;count&nbsp;of&nbsp;positive&nbsp;search&nbsp;query&nbsp;words&nbsp;in&nbsp;site&nbsp;divided&nbsp;by&nbsp;maximal&nbsp;same&nbsp;number&nbsp;across&nbsp;all<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sites</tt></dd></dl>
+ <dl><dt><a name="-IRank2"><strong>IRank2</strong></a>(graph: structures.graph.Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list, positive_query_len: int, word_count: list = None)</dt><dd><tt>Calculates&nbsp;IR2&nbsp;factor&nbsp;by&nbsp;formula:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR2&nbsp;=&nbsp;1&nbsp;+&nbsp;appearance&nbsp;words&nbsp;count&nbsp;/&nbsp;appearance&nbsp;file&nbsp;count<br>
+&nbsp;<br>
+Appearance&nbsp;word&nbsp;count&nbsp;-&nbsp;for&nbsp;each&nbsp;site&nbsp;that&nbsp;has&nbsp;a&nbsp;link&nbsp;to&nbsp;matched&nbsp;site,&nbsp;sum&nbsp;of&nbsp;count&nbsp;of&nbsp;appearances&nbsp;of&nbsp;words&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;positive&nbsp;query<br>
+Appearance&nbsp;file&nbsp;count&nbsp;-&nbsp;number&nbsp;of&nbsp;linking&nbsp;sites&nbsp;in&nbsp;which&nbsp;appear&nbsp;words&nbsp;from&nbsp;positive&nbsp;search&nbsp;query</tt></dd></dl>
+ <dl><dt><a name="-get_ranks"><strong>get_ranks</strong></a>(pagerank: numpy.ndarray, graph: structures.graph.Graph, hard_result_set: dict, broad_positive_res_set: dict, ordered_list: list, positive_query_len: int)</dt><dd><tt>Rank&nbsp;calculation&nbsp;algorithm:<br>
+&nbsp;<br>
+Formula&nbsp;influenced&nbsp;by:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;appearances&nbsp;of&nbsp;the&nbsp;searched&nbsp;words&nbsp;on&nbsp;site&nbsp;-&nbsp;IR1&nbsp;(included&nbsp;in&nbsp;IR)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;sites&nbsp;linking&nbsp;to&nbsp;site&nbsp;-&nbsp;PR&nbsp;(PageRank&nbsp;-&nbsp;US6285999B1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;searched&nbsp;words&nbsp;on&nbsp;linking&nbsp;sites&nbsp;to&nbsp;site&nbsp;-&nbsp;IR2&nbsp;(included&nbsp;in&nbsp;IR)<br>
+&nbsp;<br>
+Normalized&nbsp;version&nbsp;of&nbsp;PageRank&nbsp;is&nbsp;used&nbsp;(values&nbsp;0-1)&nbsp;-&nbsp;PR<br>
+IR&nbsp;is&nbsp;also&nbsp;normalized.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RANK&nbsp;=&nbsp;PR&nbsp;*&nbsp;IR<br>
+&nbsp;<br>
+RANK&nbsp;is&nbsp;normalized.<br>
+&nbsp;<br>
+For&nbsp;details&nbsp;on&nbsp;the&nbsp;algorithm&nbsp;see&nbsp;function&nbsp;IRank&nbsp;in&nbsp;this&nbsp;module&nbsp;and&nbsp;pagerank.py&nbsp;module.<br>
+&nbsp;<br>
+:param&nbsp;pagerank:&nbsp;PR<br>
+:param&nbsp;graph:&nbsp;PopulateStructures&nbsp;attribute<br>
+:param&nbsp;hard_result_set:&nbsp;result&nbsp;set&nbsp;of&nbsp;the&nbsp;search&nbsp;query,&nbsp;see&nbsp;execute_query&nbsp;method&nbsp;in&nbsp;query.py&nbsp;module&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval_query&nbsp;method&nbsp;in&nbsp;advanced.eval_query.py&nbsp;module<br>
+:param&nbsp;broad_positive_res_set:&nbsp;result&nbsp;set&nbsp;of&nbsp;broad&nbsp;set&nbsp;of&nbsp;sites&nbsp;influencing&nbsp;ranking&nbsp;algorithm,&nbsp;see&nbsp;execute_query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;in&nbsp;query.py&nbsp;module&nbsp;or&nbsp;eval_query&nbsp;method&nbsp;in&nbsp;advanced.eval_query.py&nbsp;module<br>
+:param&nbsp;ordered_list:&nbsp;order&nbsp;od&nbsp;sites&nbsp;from&nbsp;PS&nbsp;object<br>
+:param&nbsp;positive_query_len:&nbsp;number&nbsp;of&nbsp;parameters&nbsp;influencing&nbsp;ranking&nbsp;process&nbsp;(all&nbsp;'positive'&nbsp;words)<br>
+:return:&nbsp;rank&nbsp;matrix&nbsp;(with&nbsp;additional&nbsp;details)</tt></dd></dl>
+ <dl><dt><a name="-normalize"><strong>normalize</strong></a>(vec)</dt><dd><tt>Function&nbsp;performs&nbsp;mathematical&nbsp;normalization&nbsp;of&nbsp;the&nbsp;first&nbsp;order&nbsp;for&nbsp;a&nbsp;given&nbsp;n&nbsp;-&nbsp;dimensional&nbsp;vector.<br>
+:param&nbsp;vec:&nbsp;vector&nbsp;to&nbsp;be&nbsp;normalized<br>
+:return:&nbsp;normalized&nbsp;vector</tt></dd></dl>
+</td></tr></table>
+</body></html>

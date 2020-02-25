@@ -1,0 +1,19 @@
+# Documentation
+
+- parse
+    - [parse_html_tree](documentation/parse_html_tree.html)
+    - [parser](documentation/parser.html)
+- results
+    - [paginator](documentation/paginator.html)
+    - [result](documentation/result.html)
+- search
+    - advanced
+        - [eval_query](documentation/eval_query.html)
+        - [query_parser](documentation/query_parser.html)
+    - [irank](documentation/irank.html)
+    - [pagerank](documentation/pagerank.html)
+    - [query](documentation/query.html)
+- structures
+    - [graph](documentation/graph.html)
+    - [set](documentation/set.html)
+    - [trie](documentation/trie.html)

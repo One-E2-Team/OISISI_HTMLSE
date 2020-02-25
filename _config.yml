@@ -8,4 +8,5 @@ include:
   - LICENSE.md
   - RM-copy.md
   - requirements.md
+  - documentation.md
 show_downloads: true

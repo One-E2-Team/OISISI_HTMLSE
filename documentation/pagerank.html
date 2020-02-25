@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pagerank</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pagerank</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cgige%5Cpycharmprojects%5Coisisi_python%5Csearch%5Cpagerank.py">c:\users\gige\pycharmprojects\oisisi_python\search\pagerank.py</a></font></td></tr></table>
+    <p><tt>PageRank&nbsp;algorithm&nbsp;with&nbsp;explicit&nbsp;number&nbsp;of&nbsp;iterations.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+ranking&nbsp;of&nbsp;nodes&nbsp;(pages)&nbsp;in&nbsp;the&nbsp;adjacency&nbsp;matrix</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-construct_pr_adj_matrix"><strong>construct_pr_adj_matrix</strong></a>(graph: structures.graph.Graph, ordered_list: list)</dt><dd><tt>Calculates&nbsp;Adjacency&nbsp;matrix&nbsp;needed&nbsp;for&nbsp;PageRank<br>
+&nbsp;<br>
+M[i,j]&nbsp;-&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;(if&nbsp;j&nbsp;and&nbsp;i&nbsp;are&nbsp;not&nbsp;connected)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;/&nbsp;number&nbsp;of&nbsp;outgoing&nbsp;links&nbsp;from&nbsp;j&nbsp;(if&nbsp;link&nbsp;from&nbsp;j&nbsp;to&nbsp;i&nbsp;exists)<br>
+Sum&nbsp;of&nbsp;each&nbsp;column&nbsp;is&nbsp;1.<br>
+&nbsp;<br>
+:param&nbsp;graph:&nbsp;graph&nbsp;from&nbsp;a&nbsp;PopulateStructures&nbsp;object<br>
+:param&nbsp;ordered_list:&nbsp;ordered&nbsp;HTML&nbsp;files&nbsp;list&nbsp;(PopulateStructures&nbsp;object)<br>
+:return:&nbsp;pagerank&nbsp;adjacent&nbsp;matrix</tt></dd></dl>
+ <dl><dt><a name="-pagerank"><strong>pagerank</strong></a>(M, num_iterations: int = 100, d: float = 0.85)</dt><dd><tt>PageRank:&nbsp;The&nbsp;trillion&nbsp;dollar&nbsp;algorithm.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+M&nbsp;:&nbsp;numpy&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;adjacency&nbsp;matrix&nbsp;where&nbsp;M_i,j&nbsp;represents&nbsp;the&nbsp;link&nbsp;from&nbsp;'j'&nbsp;to&nbsp;'i',&nbsp;such&nbsp;that&nbsp;for&nbsp;all&nbsp;'j'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sum(i,&nbsp;M_i,j)&nbsp;=&nbsp;1<br>
+num_iterations&nbsp;:&nbsp;int,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;iterations,&nbsp;by&nbsp;default&nbsp;100<br>
+d&nbsp;:&nbsp;float,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;damping&nbsp;factor,&nbsp;by&nbsp;default&nbsp;0.85<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+numpy&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;vector&nbsp;of&nbsp;ranks&nbsp;such&nbsp;that&nbsp;v_i&nbsp;is&nbsp;the&nbsp;i-th&nbsp;rank&nbsp;from&nbsp;[0,&nbsp;1],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;sums&nbsp;to&nbsp;1</tt></dd></dl>
+</td></tr></table>
+</body></html>
