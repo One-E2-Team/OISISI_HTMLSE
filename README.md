@@ -19,3 +19,8 @@ This program has been developed and tested using Python interpreter version 3.7.
 - [Parglare](https://pypi.org/project/parglare/) version version 0.12.0  `pip install parglare`
 
 or see [requirements.txt](requirements.txt)
+
+### Algorithm
+
+The ranking algorithm (as well as all functions in project) are explained in documentation comments within the code.
+For Ranking alorithm, as entry point to the explanation, use `get_ranks` method in module `irank` in `search` package.

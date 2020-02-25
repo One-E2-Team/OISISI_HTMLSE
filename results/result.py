@@ -1,4 +1,10 @@
 def get_search_result(ranks: list, ordered_list: list):
+    """
+    Method drops all sites that should not be displayed (those which have RANK qual to 0)
+    :param ranks: ranks for given search for all sites by order present in ordered_list
+    :param ordered_list: PopulateStructures instance attribute html_files (list of all sites)
+    :return: filtered results list
+    """
     ret = []
     for i in range(len(ranks)):
         if ranks[i][0] != 0:
@@ -7,6 +13,12 @@ def get_search_result(ranks: list, ordered_list: list):
 
 
 def sort(result_set: list):
+    """
+    Sort implementation is MUTABLE.
+    Quick Sort is used.
+    :param result_set: list to be sorted, this is the destination
+    :return: None
+    """
     _quick_sort(result_set, 0, len(result_set)-1)
 
 

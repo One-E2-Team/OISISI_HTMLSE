@@ -1,4 +1,11 @@
 def paginate(result: list, time: float, rank_details=False):
+    """
+    Results pagination.
+    :param result: list containing results
+    :param time: search duration
+    :param rank_details: boolean indicating details display
+    :return: None
+    """
     print('\n{0} results ({1} seconds)\n'.format(len(result), time))
     N = input('Enter pagination number, \'c\' to cancel printing job '
               'and 0 or anything else to print everything all at once:')

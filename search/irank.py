@@ -111,8 +111,10 @@ def get_ranks(pagerank: np.ndarray, graph: Graph, hard_result_set: dict, broad_p
 
     :param pagerank: PR
     :param graph: PopulateStructures attribute
-    :param hard_result_set: result set of the search query
-    :param broad_positive_res_set: result set of broad set of sites influencing ranking algorithm
+    :param hard_result_set: result set of the search query, see execute_query method in query.py module or
+                            eval_query method in advanced.eval_query.py module
+    :param broad_positive_res_set: result set of broad set of sites influencing ranking algorithm, see execute_query
+                                    method in query.py module or eval_query method in advanced.eval_query.py module
     :param ordered_list: order od sites from PS object
     :param positive_query_len: number of parameters influencing ranking process (all 'positive' words)
     :return: rank matrix (with additional details)

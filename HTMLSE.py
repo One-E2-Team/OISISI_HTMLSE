@@ -6,7 +6,7 @@ import search
 import search.advanced
 
 UI_UX = True
-DEBUG = True
+DEBUG = False
 
 
 def rank_and_display():

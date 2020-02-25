@@ -35,9 +35,9 @@ def execute_query(query, trie):
     :param trie: populated trie
     :return: positive_query: string with searched words(excluding words after NOT operator)
              hard_result_set: dict with file paths that satisfies constraints in query as keys and numbers of
-    appearances for every searched word on those paths
+                                appearances for every searched word in positive_query
              broad_positive_res_set: dict with file paths as keys and numbers of appearances for every searched word
-    on those paths
+                                    present in positive_query (sites present in hard_result_set are not included)
     """
     query = get_correct_query(query)
     flag = None
