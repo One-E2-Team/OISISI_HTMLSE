@@ -1,7 +1,7 @@
 # OISISI_HTMLSE
 Second project from OISISI Subject (Fundamentals of Information Systems and Software Engineering); E2/RA-PRNiI, 5th semester - PYTHON.
 
-[HTMLSE website](https://fmasterofu.github.io/OISISI_HTMLSE/)
+[HTMLSE website](https://github.com/One-E2-Team/OISISI_HTMLSE/)
 
 In order to set up Test Dataset, Run as Administrator following PowerShell command (only on Windows, in Linux default execution policy in powershel is Unrestricted, however, given script won't work under Linux ¯\\_(ツ)_/¯)
 ```powershell
