@@ -47,51 +47,41 @@ def execute_query(query, trie):
     hard_search = {}
     if ' ' not in query:
         paths = trie.word_exists(query)
-        ret_string += query
+        ret_string = query
         if paths is not False:
-            ret = Set()
+            result_set = Set()
             for p in paths.keys():
-                ret.add(p)
+                result_set.add(p)
                 broad_search[p] = []
                 broad_search[p].append(paths[p])
-            for i in ret.get_list():
-                hard_search[i] = broad_search[i]
-            return ret_string, hard_search, broad_search
-        else:
-            print("'" + query + "' doesn't exist in trie")
-            return ret_string, hard_search, broad_search
+            """ hard and broad search are same for 1 word """
+            return ret_string, broad_search, broad_search
+        print("'" + query + "' doesn't exist in trie")
+        return ret_string, hard_search, broad_search
     elif ' and ' not in query and ' or ' not in query and ' not ' not in query:
         flag = 'or'
         words = query.split(' ')
     else:
         parts = query.split(' ')
+        words.append(parts[0])
+        words.append(parts[2])
         if parts[1] == 'and':
             flag = 'and'
-            words.append(parts[0])
-            words.append(parts[2])
         elif parts[1] == 'not':
             flag = 'not'
-            words.append(parts[0])
-            words.append(parts[2])
         elif parts[1] == 'or':
             flag = 'or'
-            words.append(parts[0])
-            words.append(parts[2])
     if flag is not None:
-        correct_words = []
-        for w in words:
-            if w != '':
-                correct_words.append(w)
         if flag == 'and' or flag == 'or':
-            for i in range(0, len(correct_words)):
-                ret_string += correct_words[i] + " "
-        elif flag == "not":
-            ret_string += correct_words[0]
+            for i in range(0, len(words)):
+                ret_string += words[i] + " "
+        else:
+            ret_string += words[0]
         ret_string = ret_string.strip()
         if flag == 'and' or flag == 'not':
             first = Set()
             second = Set()
-            paths = trie.word_exists(correct_words[0])
+            paths = trie.word_exists(words[0])
             if paths is not False:
                 for p in paths.keys():
                     first.add(p)
@@ -99,7 +89,7 @@ def execute_query(query, trie):
                     broad_search[p].append(paths[p])
                     if flag != 'not':
                         broad_search[p].append(0)
-            paths = trie.word_exists(correct_words[1])
+            paths = trie.word_exists(words[1])
             if paths is not False:
                 for p in paths.keys():
                     second.add(p)
@@ -110,32 +100,30 @@ def execute_query(query, trie):
                     elif flag != 'not' and p in broad_search.keys():
                         broad_search[p][1] = paths[p]
             if flag == 'and':
-                ret = first & second
+                result_set = first & second
             elif flag == 'not':
-                ret = first - second
-            for i in ret.get_list():
+                result_set = first - second
+            for i in result_set.get_list():
                 hard_search[i] = broad_search[i]
             return ret_string, hard_search, broad_search
         elif flag == 'or':
             sets = []
-            for i in range(len(correct_words)):
-                sets.append(Set())
-            for i in range(len(correct_words)):
-                paths = trie.word_exists(correct_words[i])
+            for i in range(len(words)):
+                new_set = Set()
+                paths = trie.word_exists(words[i])
                 if paths is not False:
                     for p in paths:
-                        sets[i].add(p)
+                        new_set.add(p)
                         if p not in broad_search.keys():
-                            broad_search[p] = []
-                            for j in range(len(correct_words)):
-                                broad_search[p].append(0)
+                            broad_search[p] = [0] * len(words)
                             broad_search[p][i] = paths[p]
                         elif p in broad_search.keys():
                             broad_search[p][i] = paths[p]
-            ret = sets[0]
-            for i in range(1, len(correct_words)):
-                ret = ret | sets[i]
-            for i in ret.get_list():
+                sets.append(new_set)
+            result_set = sets[0]
+            for i in range(1, len(words)):
+                result_set = result_set | sets[i]
+            for i in result_set.get_list():
                 hard_search[i] = broad_search[i]
             return ret_string, hard_search, broad_search
 
